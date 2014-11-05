@@ -555,6 +555,58 @@ $form["tabs"]['backup'] = array (
 
 // }
 
+
+
+/* ADDED BY PATRIZIO TUFAROLO */
+
+if ($_SESSION["s"]["user"]["typ"] == 'admin') {
+	$form["tabs"]["migration"] = array (
+		'title' => "Migration",
+		'width' => 100,
+		'template' => 'templates/pt_web_domain_migration.htm',
+		'readonly' => true,
+		'fields' => array(
+			'mig_server_id' => array (
+				'datatype' => 'INTEGER',
+				'formtype' => 'SELECT',
+				'default' => '',
+				'validators'    => array (  0 => array (    'type'  => 'NOTEMPTY',
+						'errmsg'=> 'no_server_error'),
+				),
+				'datasource' => array (  'type' => 'SQL',
+					'querystring' => 'SELECT server_id,server_name FROM server WHERE mirror_server_id = 0 AND web_server = 1 AND {AUTHSQL} ORDER BY server_name',
+					'keyfield'=> 'server_id',
+					'valuefield'=> 'server_name'
+				),
+				'value'  => ''
+			),
+			'mig_domain_id' => array (
+				'datatype' => 'INTEGER',
+				'formtype' => 'SELECT',
+				'default' => '',
+				'validators'    => array (  0 => array (    'type'  => 'NOTEMPTY',
+						'errmsg'=> 'no_server_error'),
+				),
+				'datasource' => array (  'type' => 'SQL',
+					'querystring' => 'SELECT domain_id,domain,server_id FROM web_domain WHERE type = "vhost" AND parent_domain_id = "0" AND {AUTHSQL} ORDER BY domain',
+					'keyfield'=> 'domain_id',
+					'valuefield'=> 'server_id'
+				),
+				'value'  => ''
+			)
+		)
+	);
+}
+/* END ADDED BY PATRIZIO TUFAROLO */
+
+
+
+
+
+
+
+
+
 if($_SESSION["s"]["user"]["typ"] == 'admin') {
 
 	$form["tabs"]['advanced'] = array (
