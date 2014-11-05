@@ -1,3 +1,5 @@
 config.inc.php
 *.conf
 *~
+.ssh/*
+interface/ssl/*
