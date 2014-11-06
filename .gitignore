@@ -3,3 +3,4 @@ config.inc.php
 *~
 .ssh/*
 interface/ssl/*
+.idea/*
