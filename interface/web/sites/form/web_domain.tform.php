@@ -588,7 +588,7 @@ if ($_SESSION["s"]["user"]["typ"] == 'admin') {
 						'errmsg'=> 'no_server_error'),
 				),
 				'datasource' => array (  'type' => 'SQL',
-					'querystring' => 'SELECT d.domain_id,concat(d.domain," on ",s.server_name) as stringa FROM web_domain as d JOIN server as s ON s.server_id = d.server_id WHERE {AUTHSQL} ORDER BY d.domain',
+					'querystring' => 'SELECT d.domain_id,concat(d.domain," on ",s.server_name) as stringa FROM web_domain as d JOIN server as s ON s.server_id = d.server_id WHERE d.domain is not null and {AUTHSQL} ORDER BY d.domain',
 					'keyfield'=> 'domain_id',
 					'valuefield'=> 'stringa'
 				),
